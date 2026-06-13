@@ -2,176 +2,266 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="theme-color" content="#ffffff">
+
 <title>Simple Launcher</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    font-family:'Outfit',sans-serif;
-    color:#fff;
-    overflow:hidden;
-
-    background:
-    linear-gradient(
-        rgba(0,0,0,.45),
-        rgba(0,0,0,.65)
-    ),
-    url("https://cdn.discordapp.com/attachments/1507374249499689142/1514190696242876537/9054de59924360eb7ac55e1271b1838a.jpg?ex=6a2a777a&is=6a2925fa&hm=dbdd4f18cbba6b34c711a211b2b337da24ad8836694cce8478d95efaa6d9b087&");
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+font-family:'Press Start 2P',cursive;
+background:#ffffff;
+color:#111;
+overflow-x:hidden;
+min-height:100vh;
 }
 
+/* Background Glow */
+.bg1,.bg2{
+position:fixed;
+border-radius:50%;
+filter:blur(100px);
+z-index:-1;
+}
+
+.bg1{
+width:250px;
+height:250px;
+background:rgba(170,100,255,.15);
+top:-80px;
+left:-80px;
+}
+
+.bg2{
+width:250px;
+height:250px;
+background:rgba(170,100,255,.12);
+bottom:-80px;
+right:-80px;
+}
+
+/* Container */
 .container{
-    padding:30px;
-    max-width:700px;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:15px;
+}
+
+/* Card */
+.card{
+width:100%;
+max-width:420px;
+background:rgba(255,255,255,.95);
+backdrop-filter:blur(20px);
+border-radius:25px;
+padding:25px 18px;
+text-align:center;
+border:1px solid rgba(0,0,0,.05);
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+/* Logo */
+.logo{
+width:110px;
+height:110px;
+margin:auto;
+margin-bottom:20px;
+}
+
+.logo img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+/* Badge */
+.badge{
+display:inline-block;
+background:#f5f5f5;
+padding:10px 15px;
+border-radius:999px;
+font-size:7px;
+margin-bottom:18px;
+}
+
+/* Title */
+h1{
+font-size:16px;
+line-height:1.8;
+margin-bottom:15px;
+}
+
+/* Description */
+.description{
+font-size:7px;
+line-height:2;
+color:#666;
+}
+
+/* Features */
+.features{
+margin-top:25px;
+display:grid;
+gap:10px;
+}
+
+.feature{
+background:#fafafa;
+border:1px solid rgba(0,0,0,.05);
+padding:15px;
+border-radius:15px;
+}
+
+.feature h3{
+font-size:8px;
+margin-bottom:10px;
+}
+
+.feature p{
+font-size:7px;
+line-height:1.8;
+color:#666;
+}
+
+/* Download Button */
+.download{
+margin-top:25px;
+}
+
+.download a{
+display:block;
+width:100%;
+text-decoration:none;
+background:#111;
+color:#fff;
+padding:18px;
+border-radius:15px;
+font-size:10px;
+transition:.3s;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.download a:hover{
+transform:translateY(-3px);
+}
+
+/* Footer */
+.footer{
+margin-top:20px;
+font-size:6px;
+color:#999;
+line-height:1.8;
+}
+
+/* Desktop */
+@media(min-width:768px){
+
+.card{
+max-width:700px;
+padding:40px;
 }
 
 .logo{
-    width:130px;
-    height:130px;
-    border-radius:30px;
-    object-fit:cover;
-    margin-bottom:24px;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    box-shadow:
-    0 10px 40px rgba(0,0,0,.45);
+width:160px;
+height:160px;
 }
 
-.title{
-    font-size:clamp(42px,8vw,82px);
-    font-weight:800;
-    letter-spacing:-2px;
-    margin-bottom:14px;
-    line-height:1.1;
+h1{
+font-size:28px;
 }
 
 .description{
-    font-size:16px;
-    color:rgba(255,255,255,.78);
-    line-height:1.8;
-    max-width:560px;
-    margin:0 auto 28px;
+font-size:9px;
 }
 
-/* Discord Button */
-.discord-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:14px 24px;
-    margin-bottom:16px;
-
-    text-decoration:none;
-    color:#fff;
-    font-size:15px;
-    font-weight:600;
-
-    border-radius:999px;
-
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.12);
-
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-
-    transition:.25s ease;
-
-    box-shadow:
-    0 8px 24px rgba(0,0,0,.25);
+.features{
+grid-template-columns:repeat(2,1fr);
 }
 
-.discord-btn:hover{
-    background:rgba(255,255,255,.12);
-    transform:translateY(-2px);
+.download a{
+width:auto;
+display:inline-block;
+padding:20px 35px;
 }
-
-/* Status */
-.status{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-
-    padding:12px 18px;
-
-    border-radius:999px;
-
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.10);
-
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-
-    font-size:15px;
-    font-weight:600;
-}
-
-.dot{
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:#FFD500;
-}
-
-.footer{
-    margin-top:20px;
-    font-size:12px;
-    letter-spacing:3px;
-    color:rgba(255,255,255,.55);
 }
 </style>
 </head>
 <body>
 
+<div class="bg1"></div>
+<div class="bg2"></div>
+
 <div class="container">
 
-    <img
-        class="logo"
-        src="https://cdn.discordapp.com/attachments/1514157353933602827/1514188737628733601/Picsart_26-06-10_11-22-34-223.jpg?ex=6a2a75a7&is=6a292427&hm=3439aa7f66e2532243b85dca211e8bcd4fec2cdfe0546b3d56d837a22e1722a0&"
-        alt="Simple Launcher Logo">
+<div class="card">
 
-    <h1 class="title">Simple Launcher</h1>
+<div class="logo">
+<img src="https://cdn.discordapp.com/attachments/1514157353933602827/1514188737628733601/Picsart_26-06-10_11-22-34-223.jpg?ex=6a2e6a27&is=6a2d18a7&hm=0b0a452f33bea65b53e7b20d65890c8e4ffac25e77e2f320fbaa3ed13cfab29e&" alt="Simple Launcher">
+</div>
 
-    <div class="description">
-        Future Of Minecraft Java Mobile Gaming.<br>
-        Simple Launcher is based on Pojav and FCL.<br>
-        Made by Team Ayrix with a smooth UI and smooth gameplay experience.<br>
-        Join our Discord community below.
-    </div>
+<div class="badge">
+BETA 1
+</div>
 
-    <a href="https://discord.gg/X4dyS2TeVc"
-       class="discord-btn"
-       target="_blank">
-        Join Discord
-    </a>
+<h1>
+SIMPLE<br>
+LAUNCHER
+</h1>
 
-    <br>
+<p class="description">
+LIGHTWEIGHT • FAST • CLEAN UI
+<br><br>
+A modern Minecraft launcher made for speed and simplicity.
+</p>
 
-    <div class="status">
-        <span class="dot"></span>
-        Status Soon
-    </div>
+<div class="features">
 
-    <div class="footer">
-        COMING SOON
-    </div>
+<div class="feature">
+<h3>FAST</h3>
+<p>Quick startup and smooth performance.</p>
+</div>
+
+<div class="feature">
+<h3>CLEAN UI</h3>
+<p>Premium white interface with pixel style.</p>
+</div>
+
+<div class="feature">
+<h3>LIGHTWEIGHT</h3>
+<p>Uses very low system resources.</p>
+</div>
+
+<div class="feature">
+<h3>MINECRAFT READY</h3>
+<p>Designed for Minecraft players.</p>
+</div>
+
+</div>
+
+<div class="download">
+<a href="https://drive.google.com/file/d/1v2Wq6e1OZGQzovqmqx8yLF0wzDVlv_UN/view?usp=drivesdk" target="_blank">
+⬇ DOWNLOAD NOW
+</a>
+</div>
+
+<div class="footer">
+© 2026 SIMPLE LAUNCHER<br>
+CREATED BY AYRIX
+</div>
+
+</div>
 
 </div>
 
